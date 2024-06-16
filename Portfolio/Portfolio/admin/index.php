@@ -2,8 +2,23 @@
 session_start();
 if(!isset($_SESSION['username'])){
     header('location:login/');
-}
-include('../include/db.php');
+>?
+    
+<?php
+    $host = "group6server.mysql.database.azure.com";
+    $username = "group6";
+    $password = "ThePortfolioHub6";
+    $database = "group6portfolio";
+
+    $conn = new mysqli($host, $username, $password, $database);
+
+    if($conn->connect_error){
+        die("Database connection failed: " . $conn->connect_error);
+    }
+
+>?
+
+<?php
 $query="SELECT * FROM personal_setup,aboutus_setup,basic_setup,admin_users";
 $queryrun=mysqli_query($db,$query);
 $data=mysqli_fetch_array($queryrun);
